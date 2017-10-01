@@ -7,8 +7,13 @@ typedef struct{no *primeiro;
 no *novoNo(int i);
 lista novaLista();
 int ehVazia(lista *l);
+
 int insereNoInicioP(lista *l,no *n);
 int insereNoInicioN(lista *l,no n);
 int insereNoInicoI(lista *l, int i);
 int insereNaPos(lista *l, no *n, int p);
+int insereNoFim(lista *l, no *n);
+
+int exculiNaPos(lista *l, int pos);
+
 void printLista(lista *l);

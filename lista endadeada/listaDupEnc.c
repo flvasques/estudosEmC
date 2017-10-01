@@ -42,7 +42,8 @@ int insereNoInicioP(lista *l,no *n)
 		l->tam++;
 	}
 	else
-	{	n->proximo = (l->primeiro);
+	{	
+		n->proximo = l->primeiro;
 		l->primeiro->anterior = n;
 		l->primeiro = n;
 		l->tam++;
@@ -53,25 +54,42 @@ int insereNoInicioN(lista *l,no n)
 {	 return insereNoInicioP(l,&n);
 }
 int insereNoInicoI(lista *l, int i)
-{	no *n = novoNo(3);
+{	no *n = novoNo(i);
 	return insereNoInicioP(l,n);
 }
 int insereNaPos(lista *l, no *n, int p)
-{	no *aux = percorre(l, p);
-	n->proximo = aux->proximo;
-	n->anterior = aux;
-	aux->proximo = n;
+{	no *aux;
+	if(p >= l->tam)
+	{	aux = percorre(l, l->tam);
+		aux->proximo = n;
+		n->anterior = aux;
+	}
+	else
+	{	aux = percorre(l, p);
+		n->proximo = aux->proximo;
+		n->anterior = aux;
+		aux->proximo = n;
+	}
+	l->tam++;
 	return 0;
+}
+int insereNoFim(lista *l, no *n)
+{	return insereNaPos(l, n, l->tam);
+}
+
+int exculiNaPos(lista *l, int pos)
+{	puts("nao implementado");
+	return 1;
 }
 
 void printLista(lista *l)
 {	no *aux = l->primeiro;
-	printf("[%d]\t",l->tam);
+	printf("(%d)-",l->tam);
 	//printf("[%d] ",aux->elemento);
 	int i = 0;
 	while(i < l->tam)
 	{	printf("[%d]\t",aux->elemento);
-		aux = aux->proximo;
+		if(aux->proximo != NULL) aux = aux->proximo;
 		i++;
 	}
 	printf("\n");
