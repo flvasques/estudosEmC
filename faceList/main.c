@@ -1,4 +1,4 @@
-#include <sdtio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "faceList.h"
 

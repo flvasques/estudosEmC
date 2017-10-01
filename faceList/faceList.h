@@ -1,20 +1,20 @@
 typedef struct 
 {
-	char *nome,
-	int idade,
+	char *nome;
+	int idade;
 	char *estadoCivil
 } pessoa;
 typedef struct
 {
-	pessoa info,
-	typedef struct
+	pessoa info;
+	struct
 	{
-		struct perfil *lista,
+		struct perfil *lista;
 		int tam
-	}seguindo,
-	typedef struct
+	}seguindo;
+	struct
 	{
-		struct perfil *lista,
+		struct perfil *lista;
 		int tam
 	} seguidores
 
@@ -22,7 +22,7 @@ typedef struct
 
 typedef struct
 {
-	perfil *perfis,
+	perfil *perfis;
 	int tam
 } usuarios;
 

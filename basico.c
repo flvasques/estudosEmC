@@ -134,7 +134,7 @@ float modulo(float a, float b)
 		return v;
 	}
 	
-		printf("dia:");
+	printf("dia:");
 	scanf("%d",&dia);
 	//_fflush(stdin);
 	printf("mes:");
