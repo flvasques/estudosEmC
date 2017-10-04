@@ -4,18 +4,18 @@ typedef struct
 	char *estadoCivil;
 	struct
 	{	struct perfil *lista;
-		int tam
+		int tam;
 	}seguindo;
 	struct
 	{	struct perfil *lista;
-		int tam
-	} seguidores
+		int tam;
+	}seguidores;
 
 } perfil;
 
 typedef struct
 {	perfil *perfis;
-	int tam
+	int tam;
 } usuarios;
 
 
@@ -29,15 +29,15 @@ perfil *addPerfil(char *nome, int idade, char *eC);
 
 void addUsuario(usuarios *u, perfil *p);
 
-void seguir(perfil *meu,perfil alvo);
+void seguir(perfil *meu, perfil *alvo);
 
-void desSeguir(perfil *p);
+void desSeguir(perfil *meu, perfil *alvo);
 
 perfil getUsuario(int i);
 
 void listar(usuarios *u);
 
-usuarios *laodaUsuarios();
+usuarios *laodUsuarios();
 
 
 

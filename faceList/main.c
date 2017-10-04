@@ -6,7 +6,8 @@ void menu();
 int main()
 {
 
-	// TENHO QUE IMPLEMENTAR E BIBLIOTECA
+	usuarios *users = loadUsuarios();
+	listar(users);
 	return 0;
 }
 void menu(){
