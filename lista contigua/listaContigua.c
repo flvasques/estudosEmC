@@ -37,7 +37,9 @@ void apagarElementoX(int pos, listaVetor *lista)
 int verificaElemento(no *n,listaVetor *lista)
 {	int i;
 	int ret = 0; 
-	for(i = 0; i < lista->tamanho, ret += (lista->vetor[i].elemento == n->elemento) ? 1 : 0; i++)
+	for(i = 0; i < lista->tamanho; i++)
+	{	if(lista->vetor[i].elemento == n->elemento) return 1;
+	}
 	return ret;
 }
 int qtdElementos(listaVetor *lista)
