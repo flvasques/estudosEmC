@@ -2,8 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 float modulo(float a, float b);
+int dia, mes, ano;
 int main(){
-	/*int dia, mes, ano;
+	/*
 	printf("dia:");
 	scanf("%d",&dia);
 	//_fflush(stdin);
