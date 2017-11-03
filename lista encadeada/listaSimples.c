@@ -85,7 +85,7 @@ int excluiNaPos(lista *l, int pos)
 }
 
 int excluiNoFim(lista *l)
-{	return excluinapos(l, (l->tam -1));
+{	return excluiNaPos(l, (l->tam -1));
 }
 
 int excluiNoInicio(lista *l)
@@ -122,7 +122,8 @@ int imprimeNodo(lista *l, int pos)
 		i++;
 	}
 	printf("[%d]\n",aux->elemento);
-	return (pos <= l->tam) 0 : 1;
+	i = (pos <= l->tam)? 0 : 1;
+	return i;
 }
 
 void imprime(lista *l)

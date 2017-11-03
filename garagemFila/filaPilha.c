@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct{ char *placa;
+typedef struct{  int id;
+				char *placa;
+				char *modelo;
 				struct carro *proximo;
 				struct carro * anterior;}carro;
 typedef struct {carro *primeiro;
 				carro *ultimo;
 				int tam;} garagem;
 
-carro *novoNo(char *p)
+carro *novoNo(char *p, char *m)
 {	carro *c = (carro *)malloc(sizeof(carro));
 	c->placa = p;
+	c->modelo = m;
+	c->id = 0;
 	c->proximo = NULL;
 	c->anterior = NULL;
 	return c;
@@ -24,15 +28,17 @@ garagem *novaFila()
 	return g;
 }
 
-void push(garagem *g, char *p)
-{	carro  *c = novoNo(p);
+void enqueue(garagem *g, char *p, char *m)
+{	carro  *c = novoNo(p,m);
 	if(g->tam == 0)
-	{	g->primeiro = c;
+	{	c->id = g->tam;
+		g->primeiro = c;
 		g->ultimo = c;
 		g->tam++;
 	}
 	else
 	{	carro *aux = g->primeiro;
+		c->id = g->tam;
 		c->proximo = aux;
 		aux->anterior = c;
 		g->primeiro = c;
@@ -40,14 +46,16 @@ void push(garagem *g, char *p)
 	}
 }
 
-void pushFila(garagem *g, carro *c)
+void enqueueP(garagem *g, carro *c)
 {	if(g->tam == 0)
-	{	g->primeiro = c;
+	{	c->id = g->tam;
+		g->primeiro = c;
 		g->ultimo = c;
-		g->tam++;
+		g->tam++;		
 	}
 	else
 	{	carro *aux = g->primeiro;
+		c->id = g->tam;
 		c->proximo = aux;
 		aux->anterior = c;
 		g->primeiro = c;
@@ -76,38 +84,40 @@ garagem *novaPilha()
 {	return novaFila();
 }
 
-carro *popPilha(garagem *l)
+carro *popP(garagem *l)
 {	carro *aux = l->primeiro;
 	l->primeiro = aux->proximo;
 	l->tam--;
-	return *aux;
+	return aux;
 }
 
 carro peakPilha(garagem *l)
 {	carro *n  =l->primeiro;
 	return *n;
 }
-void pushPilha(garagem *l,char *p)
-{	carro *n = novoNo(p);
+void push(garagem *l, char *p,  char *m)
+{	carro *n = novoNo(p,m);
 	if(l->tam == 0)
-	{	l->primeiro = n;
+	{	n->id = l->tam;
+		l->primeiro = n;
 		l->tam++;
 	}
 	else
-	{	
+	{	n->id = l->tam;
 		n->proximo = (l->primeiro);
 		l->primeiro = n;
 		l->tam++;
 	}
 }
 
-void pushPilhaP(garagem *l, carro *c)
+void pushP(garagem *l, carro *c)
 {	if(l->tam == 0)
-	{	l->primeiro = c;
+	{	c->id = l->tam;
+		l->primeiro = c;
 		l->tam++;
 	}
 	else
-	{	
+	{	c->id = l->tam;
 		c->proximo = (l->primeiro);
 		l->primeiro = c;
 		l->tam++;
