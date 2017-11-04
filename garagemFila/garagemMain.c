@@ -10,18 +10,22 @@ carro *a;
 
 void menu();
 void limparBuffer();
-
+void limparTela();
 int main()
 {	l = novaFila();
 	p = novaPilha();
-	system("cls");
-	//system("clear");
+	limparTela();	
 	menu();
 	return 0;
 }
 void limparBuffer()
 {	fflush(stdin);
 	//__fpurge(stdin);
+}
+void limparTela()
+{
+	system("cls");
+	//system("clear");
 }
 void menu()
 {	limparBuffer();
@@ -47,22 +51,19 @@ void menu()
 			limparBuffer();
 			m[strlen(m)-1] = '\0';
 			enqueue(l, n, m);
-			//system("cls");
-			system("clear");
+			limparTela();
 		break;
 		case '2':
 		printf("Informe a placa do Veiculo: ");
 			fgets(n,255,stdin);
 			limparBuffer();
+			achou = 0;
 			while(l->tam > 0 && achou == 0)
 			{	a = pop(l);
 				if(strcmp(n, a->placa))
 				{	achou = 1;
-					free(a);
 				}
-				else
-				{ enqueueP(p, a);
-				}
+				enqueueP(p, a);
 				j++;
 				if(j % 4 == 0)	printf("\n");
 			}
@@ -70,6 +71,7 @@ void menu()
 			{	a = pop(p);
 				enqueueP(l, a);
 			}
+			limparTela();
 			if (achou == 0)
 			{	printf("Veiculo nao encontrado\n");
 			}
@@ -111,6 +113,7 @@ void menu()
 			{	a = pop(p);
 				enqueueP(l, a);
 			}
+			limparTela();
 			if (achou == 0)
 			{	printf("Veiculo nao encontrado\n");
 			}
@@ -119,12 +122,10 @@ void menu()
 			}
 		break;
 		case 'x':
-			system("cls");
-			//system("clear");
+			limparTela();
 			printf("\t\t\tATE LOGO\n\n");
 			exit(0);
 		break;
 	}
-	system("cls");
 	menu();
 }
