@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio_ext.h>
 #include "filaPilha.h"
 
 char opt;
@@ -15,19 +14,19 @@ void limparBuffer();
 int main()
 {	l = novaFila();
 	p = novaPilha();
-	//system("cls");
-	system("clear");
+	system("cls");
+	//system("clear");
 	menu();
 	return 0;
 }
 void limparBuffer()
-{	//fflush(stdin);
-	__fpurge(stdin);
+{	fflush(stdin);
+	//__fpurge(stdin);
 }
 void menu()
 {	limparBuffer();
 	printf("Escolha uma opcao:");
-	printf("\n1.Estacionar\t2.Retirar próximo\t3.Porcurar e Retirar\n");
+	printf("\n1.Estacionar\t2.Procurar Veiculo\t3.Procurar e Retirar\n");
 	printf("\nx.Sair\n");
 	opt = getchar();
 	char n[255];
@@ -47,7 +46,7 @@ void menu()
 			fgets(m,255,stdin);
 			limparBuffer();
 			m[strlen(m)-1] = '\0';
-			push(l, n, m);
+			enqueue(l, n, m);
 			//system("cls");
 			system("clear");
 		break;
@@ -62,14 +61,14 @@ void menu()
 					free(a);
 				}
 				else
-				{ pushPilhaP(p, a);
+				{ enqueueP(p, a);
 				}
 				j++;
 				if(j % 4 == 0)	printf("\n");
 			}
 			while(p->tam > 0)
-			{	a = popPilha(p);
-				pushFila(l, a);
+			{	a = pop(p);
+				enqueueP(l, a);
 			}
 			if (achou == 0)
 			{	printf("Veiculo nao encontrado\n");
@@ -83,15 +82,15 @@ void menu()
 			printf("\n");
 			j = 0;
 			while(l->tam > 0)
-			{	a = pop(l);
+			{	a = dequeue(l);
 				printf("%d: %s, %s\t",a->id, a->placa, a->modelo);
-				pushPilhaP(p, a);
+				enqueueP(p, a);
 				j++;
 				if(j % 4 == 0)	printf("\n");
 			}
 			while(p->tam > 0)
-			{	a = popPilha(p);
-				pushFila(l, a);
+			{	a = pop(p);
+				pushP(l, a);
 			}
 			limparBuffer();
 			printf("\nInforme o id do Veiculo: ");
@@ -103,14 +102,14 @@ void menu()
 					free(a);
 				}
 				else
-				{ pushPilhaP(p, a);
+				{ pushP(p, a);
 				}
 				j++;
 				if(j % 4 == 0)	printf("\n");
 			}
 			while(p->tam > 0)
-			{	a = popPilha(p);
-				pushFila(l, a);
+			{	a = pop(p);
+				enqueueP(l, a);
 			}
 			if (achou == 0)
 			{	printf("Veiculo nao encontrado\n");
@@ -120,12 +119,12 @@ void menu()
 			}
 		break;
 		case 'x':
-			//system("cls");
-			system("clear");
+			system("cls");
+			//system("clear");
 			printf("\t\t\tATE LOGO\n\n");
 			exit(0);
 		break;
 	}
-	//system("cls");
+	system("cls");
 	menu();
 }

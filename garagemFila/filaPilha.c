@@ -73,7 +73,7 @@ carro *peak(garagem *g)
 	}
 }
 
-carro *pop(garagem *g)
+carro *dequeue(garagem *g)
 {	carro *aux = g->ultimo;
 	g->ultimo = aux->anterior;
 	g->tam--;
@@ -84,7 +84,7 @@ garagem *novaPilha()
 {	return novaFila();
 }
 
-carro *popP(garagem *l)
+carro *pop(garagem *l)
 {	carro *aux = l->primeiro;
 	l->primeiro = aux->proximo;
 	l->tam--;
