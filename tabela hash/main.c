@@ -1,17 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <stddef.h>
+#include "bibHash.h"
+
+#define SIZE 26
+char opt;
 
 void loadFile();
 void limparBuffer();
 void limparTela();
 void menu();
+
 int main()
-{
-	setlocale(LC_CTYPE,"Portuguese");
+{	setlocale(LC_CTYPE,"Portuguese");
+	limparBuffer();
 	
+	lista *tabela = (lista *)malloc(sizeof(lista) * SIZE);
 
-
+	int cont;
+	for(cont = 0; cont < SIZE; cont++)
+	{	tabela[cont] = novaLista();
+	}
+	inserir("Fernando", "1234", tabela);
+	for(cont = 0; cont < SIZE; cont++)printf("%d\n", tabela[cont].tam);
 	return 0;
 }
 
@@ -25,8 +37,7 @@ void limparTela()
 	//system("clear");
 }
 void loadFile()
-{
-	FILE *arquivo;
+{	FILE *arquivo;
 	char linha[151];
 
 	int n = 0;
@@ -34,7 +45,6 @@ void loadFile()
 	if(arquivo == NULL)
 	{
 		puts("Arquivo não encontrado");
-		return 1;
 	}
 
 	while(fgets(linha, 150, arquivo) != NULL)
@@ -45,14 +55,13 @@ void loadFile()
 void menu()
 {	limparBuffer();
 	printf("Escolha uma opcao:");
-	printf("\n1.\t2.\t3.\n");
+	printf("\n1. \t2. \t3. \n");
 	printf("\nx.Sair\n");
 	opt = getchar();
 
 	limparBuffer();
 	switch (opt)
-	{
-		case '1':
+	{	case '1':
 			
 		break;
 		case '2':
