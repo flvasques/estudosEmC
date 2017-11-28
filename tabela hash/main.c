@@ -2,9 +2,30 @@
 #include <stdlib.h>
 #include <locale.h>
 
+void loadFile();
+void limparBuffer();
+void limparTela();
+void menu();
 int main()
 {
 	setlocale(LC_CTYPE,"Portuguese");
+	
+
+
+	return 0;
+}
+
+void limparBuffer()
+{	fflush(stdin);
+	//__fpurge(stdin);
+}
+void limparTela()
+{
+	system("cls");
+	//system("clear");
+}
+void loadFile()
+{
 	FILE *arquivo;
 	char linha[151];
 
@@ -20,6 +41,31 @@ int main()
 	{
 		printf("%s\n", linha);
 	}
+}	//system("clear");
+void menu()
+{	limparBuffer();
+	printf("Escolha uma opcao:");
+	printf("\n1.Estacionar\t2.Procurar Veiculo\t3.Procurar e Retirar\n");
+	printf("\nx.Sair\n");
+	opt = getchar();
 
-	return 0;
+	limparBuffer();
+	switch (opt)
+	{
+		case '1':
+			
+		break;
+		case '2':
+		
+		break;
+		case '3':
+			
+		break;
+		case 'x':
+			limparTela();
+			printf("\t\t\tATE LOGO\n\n");
+			exit(0);
+		break;
+	}
+	menu();
 }
