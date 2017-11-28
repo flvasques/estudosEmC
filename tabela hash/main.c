@@ -45,7 +45,7 @@ void loadFile()
 void menu()
 {	limparBuffer();
 	printf("Escolha uma opcao:");
-	printf("\n1.Estacionar\t2.Procurar Veiculo\t3.Procurar e Retirar\n");
+	printf("\n1.\t2.\t3.\n");
 	printf("\nx.Sair\n");
 	opt = getchar();
 
