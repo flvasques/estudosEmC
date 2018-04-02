@@ -17,7 +17,11 @@ typedef struct
 	char telefones[5][15];
 	endereco *end;
 } pessoa;
-
+typedef struct
+{
+	pessoa *lista;
+	int total;
+}listagem;
 
 pessoa* nova_pessoa();
 void receber_string(char *var);
