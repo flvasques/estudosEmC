@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define	TAM 100
+#define	TAM 2
 
 typedef struct{
 	int info;
@@ -10,48 +10,93 @@ typedef struct{
 	no *lista;
 	int max;
 	int atual;
-}listaCF;
+}lista_cf;
 
-listaCF * nova_listaCF();
-void inserir(listaCF *l, int valor);
-void inserirPOS(listaCF *l, int valor, int pos);
-void remover(listaCF *l, int valor);
-void excluir_listaCF(listaCF **l);
+lista_cf * nova_lista_cf();
+void inserir(lista_cf *l, int valor);
+void inserirPOS(lista_cf *l, int valor, int pos);
+void removerPOS(lista_cf *l, int pos);
+void excluir_lista_cf(lista_cf **l);
+int contar_elemneto(lista_cf *l, int valor);
+void imprime_lista(lista_cf *l);
 
 int main()
 {
-	/* code */
+	lista_cf *l = nova_lista_cf();
+	inserir(l, 1);
+	inserir(l, 2);
+	inserir(l, 3);
+	imprime_lista(l);
+	removerPOS(l, 1);
+	inserirPOS(l, 5, 0);
+	imprime_lista(l);
+	excluir_lista_cf(&l);
 	return 0;
 }
 
-listaCF * nova_listaCF()
+lista_cf * nova_lista_cf()
 {
-	listaCF *l = malloc(sizeof(listaCF));
+	lista_cf *l = malloc(sizeof(lista_cf));
 	no *n = malloc(sizeof(no) * TAM);
 	l->lista = n;
 	l->max = TAM;
 	l->atual = 0;
 }
 
-void excluir_listaCF(listaCF **l)
+void excluir_lista_cf(lista_cf **l)
 {
-	listaCF *pl = *l;
+	lista_cf *pl = *l;
+	free(pl->lista);
 	free(pl);
-	free(l);
-	*l = NULL;
+	*l= NULL;
 }
-void inserir(listaCF *l, int valor)
+
+void inserirPOS(lista_cf *l, int valor, int pos)
 {
 	if(l->atual <= l->max)
 	{
-		l->atual++;
-		l->lista[l->atual].info = valor;
-	}
-	else
-	{
 		l->max += TAM; 
 		realloc(l->lista, l->max);
-		l->atual++;
-		l->lista[l->atual].info = valor;
 	}
+	int i;
+	for(i = l->atual; i>pos ; i--) 
+	{
+		l->lista[i].info = l->lista[i - 1].info;
+	}
+	l->lista[i].info=valor;
+	l->atual++;
+}
+
+void inserir(lista_cf *l, int valor)
+{
+	inserirPOS(l, valor, l->atual);
+}
+
+void removerPOS(lista_cf *l, int pos)
+{
+	int i;
+	for(i = pos; i < l->atual; i++)
+	{
+		l->lista[i] = l->lista[i + 1];
+	}
+	l->atual--;
+}
+
+int contar_elemneto(lista_cf *l, int valor)
+{
+	int cont = 0, i;
+	for (i = 0; i < l->atual; i++)
+	{
+		cont += l->lista[i].info == valor ? 1 : 0;
+	}
+	return cont;
+}
+void imprime_lista(lista_cf *l)
+{
+	int i;
+	for (i = 0;  i < l->atual; i++)
+	{
+		printf("[%i]", l->lista[i].info);
+	}
+	printf("\n");
 }
