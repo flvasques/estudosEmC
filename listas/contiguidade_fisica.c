@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define	TAM 2
+#define	TAM 10
 
 typedef struct{
 	int info;
