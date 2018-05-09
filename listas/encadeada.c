@@ -15,7 +15,12 @@ lista_enc * nova_lista();
 int eh_vazia(lista_enc *l);
 int insere_no_inicio_p(lista_enc *l, no *n);
 int insere_no_inicio_n(lista_enc *l, no n);
+int insere_no_inicio_i(lista_enc *l, int i);
+void insere_na_pos(lista_enc *l, int pos, no *n);
+void insere_no_fim(lista_enc *l, no *n);
 no * novo_no(int valor);
+
+void imprime(lista_enc *l);
 
 int main()
 {
@@ -25,7 +30,19 @@ int main()
 	insere_no_inicio_p(lista, nodo);
 	nodo = novo_no(2);
 	insere_no_inicio_n(lista, *nodo);
+	insere_no_inicio_i(lista, 3);
+
+	imprime(lista);
+
 	return 0;
+}
+
+no * novo_no(int valor)
+{
+	no *n = malloc(sizeof(no));
+	n->info = valor;
+	n->prox = NULL;
+	return n;
 }
 
 lista_enc * nova_lista()
@@ -58,10 +75,62 @@ int insere_no_inicio_n(lista_enc *l, no n)
 	return 0;	
 }
 
-no * novo_no(int valor)
+int insere_no_inicio_i(lista_enc *l, int i)
 {
-	no *n = malloc(sizeof(no));
-	n->info = valor;
-	n->prox = NULL;
-	return n;
+	no *n = novo_no(i);
+	n->prox = l->primeiro;
+	l->primeiro = n;
+	
+	return 0;
+}
+void insere_na_pos(lista_enc *l, int pos, no *n)
+{
+	no *aux = l->primeiro;
+	int i = 0;
+	if(l->primeiro != NULL)
+	{
+		while((aux->prox != NULL) && (i < pos))
+		{
+			aux = aux->prox;
+			i++;
+		}
+		n->prox = aux->prox;
+		aux->prox = n;
+	}else
+	{
+		l->primeiro  = n;
+	}
+}
+void insere_no_fim(lista_enc *l, no *n)
+{
+	no *aux = l->primeiro;
+	if(l->primeiro != NULL)
+	{
+		while(aux->prox != NULL)
+		{
+			aux = aux->prox;
+		}
+		n->prox = aux->prox;
+		aux->prox = n;
+	}else
+	{
+		l->primeiro  = n;
+	}
+}
+
+void imprime(lista_enc *l)
+{
+	no *aux = l->primeiro;
+	if(l->primeiro != NULL)
+	{
+		while(aux->prox != NULL)
+		{
+			aux = aux->prox;
+			printf("[%i]", aux->info);
+		}
+	}else
+	{
+		printf("[]");
+	}
+	printf("\n");
 }
