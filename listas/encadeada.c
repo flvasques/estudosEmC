@@ -11,6 +11,7 @@ typedef struct {
 	int tam;
 }lista_enc;
 
+no * novo_no(int valor);
 lista_enc * nova_lista();
 int eh_vazia(lista_enc *l);
 int insere_no_inicio_p(lista_enc *l, no *n);
@@ -18,7 +19,6 @@ int insere_no_inicio_n(lista_enc *l, no n);
 int insere_no_inicio_i(lista_enc *l, int i);
 void insere_na_pos(lista_enc *l, int pos, no *n);
 void insere_no_fim(lista_enc *l, no *n);
-no * novo_no(int valor);
 
 void imprime(lista_enc *l);
 
@@ -31,6 +31,8 @@ int main()
 	nodo = novo_no(2);
 	insere_no_inicio_n(lista, *nodo);
 	insere_no_inicio_i(lista, 3);
+	nodo = novo_no(4);
+	insere_na_pos(lista, 1, nodo);
 
 	imprime(lista);
 
@@ -93,13 +95,16 @@ void insere_na_pos(lista_enc *l, int pos, no *n)
 		{
 			aux = aux->prox;
 			i++;
+			printf("%i - ", i);
 		}
+		printf("\n");
 		n->prox = aux->prox;
 		aux->prox = n;
 	}else
 	{
 		l->primeiro  = n;
 	}
+
 }
 void insere_no_fim(lista_enc *l, no *n)
 {
@@ -127,6 +132,7 @@ void imprime(lista_enc *l)
 		{
 			aux = aux->prox;
 			printf("[%i]", aux->info);
+			system("pause");
 		}
 	}else
 	{
