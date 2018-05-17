@@ -11,6 +11,7 @@ typedef struct node{
 
 typedef struct {
 	no *primeiro;
+	no *ultimo;
 	int tam;
 }lista_enc;
 
@@ -93,6 +94,7 @@ lista_enc * nova_lista()
 {
 	lista_enc * l = malloc(sizeof(lista_enc));
 	l->primeiro = NULL;
+	l->ultimo = NULL;
 	l->tam = 0;
 
 	return l;
