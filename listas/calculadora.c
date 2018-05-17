@@ -33,10 +33,12 @@ void menu();
 int main()
 {
 	char *str_1;
+	lista_enc *lista1 = nova_lista();
 	limpar_tela();
 	printf("\t\tSeja Bem Vindo!\n");
 	printf("Informe um valor ou x para sair.\n");
 	receber_string(str_1);
+	set_valor(lista1, str_1);
 	menu();
 	return 0;
 }
@@ -154,8 +156,6 @@ void imprime_numero(lista_enc *l)
 					printf("000");
 			}
 			n = n->prox;
-			if (n != NULL)
-				printf(".");
 		}
 		printf("\n");
 	}
@@ -169,13 +169,14 @@ void set_valor(lista_enc *l, char *num)
 	int valor;
 	for(i = strlen(num) - 1; i > 0;  i -= 3)
 	{
-		aux[0] = num[i - 2];
-		aux[1] = num[i - 1];
+		if((i - 2) >= 0)aux[0] = num[i - 2];
+		if((i - 1) >= 0)aux[1] = num[i - 1];
 		aux[2] = num[i];
 		int valor = atoi(aux);
 		no *n = novo_no(valor);
 		n->ant = l->ultimo;
 		l->ultimo->prox = n;
 		if(l->primeiro = NULL) l->primeiro = n;
+
 	}
 }
