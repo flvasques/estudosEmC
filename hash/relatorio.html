@@ -1,0 +1,43 @@
+
+<!-- / Javascript -->
+<!DOCTYPE html>
+<html lang="pt-br" >
+	<head>
+		<meta charset="utf-8">
+		<title>Ralatório</title>
+		
+		<script src="https://code.highcharts.com/stock/highstock.js"></script>
+		<script type="text/javascript" src="data.js"></script>
+	</head>
+	<body>
+		<div id="grafico">
+			
+		</div>
+
+	</body>
+
+	<script type="text/javascript">
+		load();
+		function load(){
+			Highcharts.chart('grafico', {
+                title: {
+			        text: 'Relatóriode Colisões Tabela Hash'
+			    },
+
+			    xAxis: {
+			        tickInterval: 0
+			    },
+
+			    yAxis: {
+			        type: 'logarithmic',
+			        minorTickInterval: 0
+			    },
+				plotOptions: {
+					turboThreshold: 20000,
+				},
+			    series: vetorResultado,
+
+		    });
+		}
+	</script>
+</html>
