@@ -48,33 +48,27 @@ void No::imprimeEm()
 	if(this->dir != NULL)
 		this->dir->imprime();
 }
-int * No::buscar(int num){
-	int retorno[2] = {0, 0};
-	return buscar(retorno, num);
-}
-int * No::buscar(int enc, int cont, int num)
-{
-	cont++;
+int No::buscar(int num){
+	contadorBinario++;
 	if(this->valor == num) 
-		ret[0] = 1;	
+		return 1;	
 	else
 	{
 		if(num < this->valor)
 		{
-			if(this->esq == NULL)
-				this->esq->buscar(ret, num);
+			if(this->esq != NULL)
+				this->esq->buscar(num);
 			else
-				ret[0] = 0;
+				return 0;
 		}
 		else
 		{
-			if(this->dir == NULL)
-				this->dir->buscar(ret, num);
+			if(this->dir != NULL)
+				this->dir->buscar(num);
 			else
-				ret[0] = 0;
+				return 0;
 		}
 	}
-	return ret;
 }
 int No::count()
 {

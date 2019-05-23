@@ -12,9 +12,8 @@ class No
 		void imprime();
 		void imprimePos();
 		void imprimeEm();
-		int * buscar(int num);
+		int buscar(int num);
 	private:
-		int * buscar(int enc, int cont, int num);
 		int count();
 };
 #endif

@@ -16,10 +16,10 @@ void buscar();
 No *arvore;
 char opcao;
 
+static int contadorBinario = 0;
 int main(int argc, char const *argv[])
 {
 	limparTela();
-	
 	arvore = new No(10);
 	arvore->insere(3);
 	arvore->insere(11);
@@ -79,11 +79,11 @@ void buscar()
 	int numero = 0;
 	cout << "Imforme o valor que deseja Procurar." << endl;
 	cin >> numero;
-	int *resultado = arvore->buscar(numero);
-	if(resultado[0] = 1)
+	int resultado = arvore->buscar(numero);
+	if(resultado == 1)
 	{
 		cout << "O numero: " << numero << " encontrado." << endl;
-		cout << "Em " << resultado[1] << "chamada(s)" << endl;
+		//cout << "Em " << resultado[1] << "chamada(s)" << endl;
 	}
 	else
 	{
